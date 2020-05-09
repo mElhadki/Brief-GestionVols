@@ -4,13 +4,13 @@ $bdd = new PDO("mysql:host=localhost;dbname=GestionVols","root","");
 
 //verifier id if exists
 $exist = true;
-if(isset($_POST['id']))
+if(isset($_POST['Num_Passport']))
 {
     $req=$bdd->prepare('SELECT Reservation.id_Reservation,Client.Nom, Client.Prenom, Client.Num_Passport, Reservation.Date_Reservation, Vol.LieuDepart,Vol.LieuArrive, Vol.DateDepart, Vol.DateArrive, Vol.Prix FROM Vol,Reservation,Client WHERE Client.Num_Passport=? and Vol.id_Vol=Reservation.id_Vol and Client.Id_Client=Reservation.Id_Client');
-    $req->execute(array($_POST['id']));
+    $req->execute(array($_POST['Num_Passport']));
     if(!$donner=$req->fetch())
     {
-    echo "Ce id n'existe pas !!!!";
+    echo "<h1 class='Message'>Ce Informations n'existe pas !!!!</h1>";
     $exist = false;
     }
    
@@ -24,7 +24,7 @@ if(isset($_POST['id']))
     <meta charset="UTF-8">
     <title>Modden_Travel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="tst.css">
+    <link rel="stylesheet" href="styleview.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/bca3abbddf.js" crossorigin="anonymous"></script>
 

@@ -188,6 +188,20 @@ video {
       font-size: 75px !important;
       animation: textanimation 1.2s ease-in-out;
 }
+.header p{
+      color: #fff;
+      font-size: 20px !important;
+      animation: textanimation2 1.2s ease-in-out;
+}
+.Message{
+    position: absolute;
+    top: 62%;
+    left: 3%;
+    text-align: center;
+    color: red;
+    z-index: 100000000000;
+    font-size: 85px !important;
+}
 @keyframes textanimation{
 	0%{
 		letter-spacing: 20px;
@@ -196,11 +210,7 @@ video {
 		letter-spacing: 1px;
 	}
 }
-.header p{
-      color: #fff;
-      font-size: 20px !important;
-      animation: textanimation2 1.2s ease-in-out;
-}
+
 
 @keyframes textanimation2{
 	0%{
@@ -219,6 +229,10 @@ video {
 
       .header h1 {
             font-size: 34px !important;
+      }
+      .Message{
+        font-size: 34px !important;
+        text-align: center;
       }
 }
 
