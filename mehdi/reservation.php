@@ -6,14 +6,16 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="Css/reservation.css">
-       
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+        
 </head>
 
 <body>
@@ -21,7 +23,7 @@
  <!-- header-->
  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#"><img src="Images/Logo2.png" style="width: 100px; height: 70px;"></a>
+        <a class="navbar-brand" href="#"><img src="Images/Logo.png" style="width: 100px; height: 70px;"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +49,10 @@
     </div>
 </nav>
 
+
 <!--Form vole -->
+
+
 <?php
 require_once('Connection.php');
 if(isset($_GET['id_Vol']))
@@ -58,7 +63,7 @@ if(isset($_GET['id_Vol']))
   while($row = $result->fetch_assoc()) {
   echo "
   
-  <div class='card' id='caard'>
+  <div class='card-body'id='caard'>
   <ul class='list-group mb-4' scope='row'>
   <li class='list-group-item'><span>Vol Numéro: <strong>" .$_GET['id_Vol']." </strong></span></li>
   <li class='list-group-item'>Lieu Départ: <strong>" .$row['LieuDepart'] . "</strong></li>
@@ -77,34 +82,17 @@ if(isset($_GET['id_Vol']))
   }
 ?>
 
+<!-- Ajout Client et reservation-->
 
-<!--Form client -->        
+<div class="card bg-light mb-3" style="  left: 150px; margin-top: 980px;   
 
-<?php
-    require_once('Connection.php');
+left:50%;
+transform:translate(-50%,-50%);
+width:500px;"
+>
 
-    $Nom =   $_POST['nom'];
-    $Prenom = $_POST['prenom'];
-    $num_Passport = @$_POST['Num_Passport'];
-
-
-    $req= "INSERT INTO client (Nom, Prenom, Num_Passport ) values ('$Nom' ,'$Prenom' , '$num_Passport' )";
-
-    $res= mysqli_query($con,$req);
-    
-  
-?>
-
-            <div class="container" style="margin-top: 600px; ">
-                <h2 class="text-center">les information de client</h2>
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-8 col-lg-6 pb-5">
-            
-        
-  
-            
-        <form method="post">
-             <div class="card border-primary rounded-0">
+          <form action="" method="post">
+          <div class="card border-primary rounded-0">
                  <div class="card-header p-0">
                         <div class="bg-info text-white text-center py-2">
                             <h3><i class="fa fa-envelope"></i> Le client</h3>
@@ -119,96 +107,86 @@ if(isset($_GET['id_Vol']))
                                         <div class="input-group-prepend">
                                              <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                          </div>
-                                             <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom..." required>
+                                         <input name="Nom" id="Nom" type="text" placeholder="Nom" class="form-control" required>
                                     </div>
                          </div>
                          <div class="form-group">
                                  <div class="input-group mb-2">
                                       <div class="input-group-prepend">
-                                         <div class="input-group-text"><i class="fa fa-envelope text-info"></i></div>
+                                         <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                       </div>
-                                         <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom..." required>
+                                      <input name="Prenom" id="Prenom" type="text" placeholder="Prenom" class="form-control"required >
                                      </div>
                           </div>
-            
                           <div class="form-group">
                                  <div class="input-group mb-2">
                                        <div class="input-group-prepend">
-                                           <div class="input-group-text"><i class="fa fa-comment text-info"></i></div>
+                                           <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
                                        </div>
-                                           <input type="text" class="form-control" id="Num_Passport" name="Num_Passport" placeholder="Numéro de Passport..." required>
-                                            </div>
-                                        </div>
-                                        <button type="button"  class="btn btn-info btn-block rounded-0 py-2" data-toggle="modal" data-target="#exampleModal">
+                                       <input name="Num_Passport" id="Num_Passport" type="text" placeholder="Num Passport" class="form-control"required >
+                                       </div>
+                          </div>
+                          <div class="form-group">
+                                 <div class="input-group mb-2">
+                                       <div class="input-group-prepend">
+                                           <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
+                                       </div>
+                                       <input name="Date_Reservation" id="Date_Reservation" type="date" placeholder="Date Reservation" class="form-control"required>
+                                       </div>
+                          </div>
+                          <button type="submit" value="Enregister" name="Enregister"  id="btn"  class="btn btn-info btn-block rounded-0 py-2" data-toggle="modal" data-target="#exampleModal">
                                                 valider
-                                         </button>
-                                              
-                                            <!-- Modal -->
-                                            
-
-                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                            <div class="modal-header">
-                            
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                           <div class="modal-body">
-                           Vous êtes opération effectueé avec succés.
-                           Entrer la date de réservation aprés confirmation
-                           </div>
-                          <div class="modal-footer">
-                        
-                         <button type="submit"  class="btn btn-info btn-block rounded-0 py-2" value='save'>
-                                                confirmer
-                                         </button>
-                                 </div>
-                                 </div>
-                                 </div>
-                                 </div>
-                                          
-                                 </div>
-            
-                                 </div>
-         </form>
-                                
-    
+                          </button>
+                          
+      
+           
+           
             
             
-                   </div>
-                 </div>
-             </div>
-  <!--Form reservation -->  
+           
+            
+           
+          </div>  
+        </div>  
+        </div>   
+        </div> 
 
-  <form method="post">
-<div class="resrvation" style="margin-top: 100px; width: 85%;  margin-right: auto ; margin-left: auto;" >
+  <?php
 
-<div class="modal-body">
-                                       <div class="input-group">
-                                           <div class="input-group-prepend">
-                                             <span class="input-group-text" id="">Date de réservation</span>
-                                           </div>
-                                           <input type="date" name="date_Reservation" class="form-control" required>
-                                          
-                                         </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                      <button type="submit"  class="btn btn-info btn-block rounded-0 py-2" value='save'>
-                                                confirmer
-                                         </button>
-                                      </div>
+require_once('Connection.php');
 
+    if(isset($_POST['Enregister']))
 
+    {
+      $Nom= $_POST['Nom'];  
+$Prenom = $_POST['Prenom'];
+$Num_Passport = $_POST['Num_Passport'];
+       if(empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Num_Passport'] ))
+       {
+            
+       }
+       else
+       {
+            $query="insert INTO client (Nom,Prenom,Num_Passport)". "VALUES ('$Nom', '$Prenom', '$Num_Passport')";
+            $result=mysqli_query($con,$query);
+            $last_id = $con->insert_id;    
+            $addevent = "insert INTO reservation(Id_Client, id_Vol, Date_Reservation) VALUES ('$last_id', '".$_GET['id_Vol']."', '".$_POST['Date_Reservation']."')";
+            $result=mysqli_query($con,$addevent);
+          
+       }
+     
 
-                </div>
-
-                </form>
+      
+    }
+   
+   
+   
+  ?>
+  
 <!--footer-->
 
 <footer>
-    <div class="footer-container">
+    <div class="footer-container"  >
       <div class="left-col">
         <span class="logo">
           <img src="Images/Logo2.png" style="width: 218px;">
@@ -229,7 +207,7 @@ if(isset($_GET['id_Vol']))
         <p>Enter Your Email to get our news and updates.</p>
         <form action="" class="newsletter-form">
           <input type="text" class="txtb" placeholder="Enter Your Email">
-          <div class="inbt"><input type="button"  class="btn" value="submit"></div>
+          <div class="inbt"  ><input type="button"  class="btn" value="submit"></div>
         </form>
       </div>
     </div>
