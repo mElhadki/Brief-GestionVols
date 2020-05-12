@@ -287,3 +287,14 @@ footer {
   }
 }
 /*# sourceMappingURL=Home.css.map */
+
+.it {
+  margin: 0;
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+  left: auto;
+  right: auto;
+  width: auto;
+  height: auto;
+}

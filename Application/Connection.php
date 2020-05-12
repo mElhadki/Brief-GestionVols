@@ -1,6 +1,6 @@
 <?php
     $con=mysqli_connect('localhost','root','','GestionVols');
-    
+
     // Check connection
     if(!$con)
     {

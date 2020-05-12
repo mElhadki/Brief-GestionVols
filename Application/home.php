@@ -152,9 +152,9 @@ if(isset($_POST['Search'])){
       <li class='list-group-item'>Numéro des Places Disponible: <strong>" . $row['NbPlace'] . "</strong></li>
       <li class='list-group-item'>Prix: <strong>" . $row['Prix'] . "</strong></li>
       <div class='card-link'>
-                       <a href='reservation.php?id_Vol=".$row['id_Vol']."'>Reserver
-      <i class='fa fa-angle-right'></i><i class='fa fa-angle-right'></i>
-      </a>
+                        <a href='reservation.php?id_Vol=".$row['id_Vol']."'>Reserver
+                        <i class='fa fa-angle-right'></i><i class='fa fa-angle-right'></i>
+                        </a>
                     </div>
       </div>
       ";
