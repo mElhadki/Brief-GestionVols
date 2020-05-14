@@ -126,14 +126,7 @@ width:500px;"
                                        <input name="Num_Passport" id="Num_Passport" type="text" placeholder="Num Passport" class="form-control"required >
                                        </div>
                           </div>
-                          <div class="form-group">
-                                 <div class="input-group mb-2">
-                                       <div class="input-group-prepend">
-                                           <div class="input-group-text"><i class="fa fa-user text-info"></i></div>
-                                       </div>
-                                       <input name="Date_Reservation" id="Date_Reservation" type="date" placeholder="Date Reservation" class="form-control"required>
-                                       </div>
-                          </div>
+                        
                           <button type="submit" value="Enregister" name="Enregister"  id="btn"  class="btn btn-info btn-block rounded-0 py-2" data-toggle="modal" data-target="#exampleModal">
                                                 valider
                           </button>
@@ -158,7 +151,7 @@ require_once('Connection.php');
     if(isset($_POST['Enregister']))
 
     {
-      $Nom= $_POST['Nom'];  
+$Nom= $_POST['Nom'];  
 $Prenom = $_POST['Prenom'];
 $Num_Passport = $_POST['Num_Passport'];
        if(empty($_POST['Nom']) || empty($_POST['Prenom']) || empty($_POST['Num_Passport'] ))
@@ -170,7 +163,7 @@ $Num_Passport = $_POST['Num_Passport'];
             $query="insert INTO client (Nom,Prenom,Num_Passport)". "VALUES ('$Nom', '$Prenom', '$Num_Passport')";
             $result=mysqli_query($con,$query);
             $last_id = $con->insert_id;    
-            $addevent = "insert INTO reservation(Id_Client, id_Vol, Date_Reservation) VALUES ('$last_id', '".$_GET['id_Vol']."', '".$_POST['Date_Reservation']."')";
+            $addevent = "insert INTO reservation(Id_Client, id_Vol, Date_Reservation) VALUES ('$last_id', '".$_GET['id_Vol']."', NOW())";
             $result=mysqli_query($con,$addevent);
           
        }
