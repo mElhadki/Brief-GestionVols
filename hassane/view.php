@@ -1,20 +1,19 @@
 <?php
 //connexion avec datta base
-$bdd = new PDO("mysql:host=localhost;dbname=GestionVols","root","");
+require_once('Connection.php');
 
 //verifier id if exists
-$exist = true;
-if(isset($_POST['Num_Passport']))
-{
-    $req=$bdd->prepare('SELECT Reservation.id_Reservation,Client.Nom, Client.Prenom, Client.Num_Passport, Reservation.Date_Reservation, Vol.LieuDepart,Vol.LieuArrive, Vol.DateDepart, Vol.DateArrive, Vol.Prix FROM Vol,Reservation,Client WHERE Client.Num_Passport=? and Vol.id_Vol=Reservation.id_Vol and Client.Id_Client=Reservation.Id_Client');
-    $req->execute(array($_POST['Num_Passport']));
-    if(!$donner=$req->fetch())
-    {
-    echo "<h1 class='Message'>Ce Informations n'existe pas !!!!</h1>";
-    $exist = false;
-    }
-   
-}
+$id = $_GET['id_Reservation'];
+  
+$query= "SELECT * FROM Vol,Reservation,Client WHERE Reservation.id_Reservation=? and Reservation.id_Vol=Vol.id_Vol and Reservation.Id_Client=Client.Id_Client";
+$stmt = $con->prepare($query);
+$stmt->bind_param("i",$id);
+$stmt->execute();
+$result= $stmt->get_result();
+$rowid = $result->fetch_assoc();
+  
+
+
 
 ?>
 
@@ -24,7 +23,7 @@ if(isset($_POST['Num_Passport']))
     <meta charset="UTF-8">
     <title>Modden_Travel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleview.css">
+    <link rel="stylesheet" href="css/styleview.css">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://kit.fontawesome.com/bca3abbddf.js" crossorigin="anonymous"></script>
 
@@ -129,49 +128,36 @@ if(isset($_POST['Num_Passport']))
 
 
     <?php
-    if ($exist)
-    {
-        echo "
-
-
-
-
-
-        <div class='container'>
+        echo "<div class='container'>
               <div class='pricing-table table1'>
                 <div class='pricing-header'>
                   <div class='price'><img src='plane.png'></div>
-                  <div class='title'><strong>N° Reservation:  </strong><span> " . $donner['id_Reservation'] . "</span></div>
-                </div>
+                  <div class='title'><strong>N° Reservation:  </strong><span> " . $id . "</span></div>
+                  </div>
                   <ul class='pricing-list'>
-                    <li><strong>Nom:</strong> " . $donner['Nom'] . " </li>
+                    <li><strong>Nom:</strong> " . $rowid['Nom'] . " </li>
                     <div class='border'></div>
-                    <li><strong>Prenom:</strong> " . $donner['Prenom'] . "</li>
+                    <li><strong>Prenom:</strong> " . $rowid['Prenom'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Num Passport:</strong> " . $donner['Num_Passport'] . "</li>
+                    <li><strong>Num Passport:</strong> " . $rowid['Num_Passport'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Date Reservation:</strong> " . $donner['Date_Reservation'] . "</li>
+                    <li><strong>Date Reservation:</strong> " . $rowid['Date_Reservation'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Lieu Depart:</strong> " . $donner['LieuDepart'] . "</li>
+                    <li><strong>Lieu Depart:</strong> " . $rowid['LieuDepart'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Lieu Arrive:</strong> " . $donner['LieuArrive'] . "</li>
+                    <li><strong>Lieu Arrive:</strong> " . $rowid['LieuArrive'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Date Depart:</strong> " . $donner['DateDepart'] . "</li>
+                    <li><strong>Date Depart:</strong> " . $rowid['DateDepart'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Date Arrive:</strong> " . $donner['DateArrive'] . "</li>
+                    <li><strong>Date Arrive:</strong> " . $rowid['DateArrive'] . "</li>
                     <div class='border'></div>
-                    <li><strong>Prix:</strong> " . $donner['Prix'] . "DH</li>
+                    <li><strong>Prix:</strong> " . $rowid['Prix'] . "DH</li>
                   </ul>
-                <a href='#'>Validé</a>
+                <a href='home.php'>Confirmer</a>
               </div>
+                
             </div>
-
-
-
-
-
-        ";
-    }
+            ";
     ?>
 
 

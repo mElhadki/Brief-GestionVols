@@ -165,9 +165,10 @@ $Num_Passport = $_POST['Num_Passport'];
             $last_id = $con->insert_id;    
             $addevent = "insert INTO reservation(Id_Client, id_Vol, Date_Reservation) VALUES ('$last_id', '".$_GET['id_Vol']."', NOW())";
             $result=mysqli_query($con,$addevent);
+            $last_id_reservation = $con->insert_id;
           
        }
-     
+     	echo "<script>location.href='view.php?id_Reservation=".$last_id_reservation."'</script>";
 
       
     }
